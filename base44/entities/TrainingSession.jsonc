@@ -1,0 +1,93 @@
+{
+  "name": "TrainingSession",
+  "type": "object",
+  "properties": {
+    "plan_id": {
+      "type": "string"
+    },
+    "day_of_week": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "title": {
+      "type": "string"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "easy_run",
+        "intervals",
+        "long_run",
+        "strength",
+        "rest",
+        "recovery"
+      ]
+    },
+    "target_distance_km": {
+      "type": "number"
+    },
+    "target_duration_min": {
+      "type": "number"
+    },
+    "intensity_zone": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "description": {
+      "type": "string"
+    },
+    "nutrition_notes": {
+      "type": "string"
+    },
+    "route_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "plan_id",
+    "day_of_week",
+    "session_type",
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

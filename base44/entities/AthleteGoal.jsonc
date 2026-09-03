@@ -1,0 +1,99 @@
+{
+  "name": "AthleteGoal",
+  "type": "object",
+  "properties": {
+    "athlete_id": {
+      "type": "string"
+    },
+    "athlete_name": {
+      "type": "string"
+    },
+    "goal_type": {
+      "type": "string",
+      "enum": [
+        "race",
+        "sleep",
+        "body"
+      ]
+    },
+    "race_name": {
+      "type": "string"
+    },
+    "distance": {
+      "type": "string"
+    },
+    "race_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "target_pace": {
+      "type": "string",
+      "description": "mm:ss /km"
+    },
+    "current_pace": {
+      "type": "string",
+      "description": "mm:ss /km"
+    },
+    "target_sleep_hours": {
+      "type": "number"
+    },
+    "target_efficiency_pct": {
+      "type": "number"
+    },
+    "start_weight_kg": {
+      "type": "number"
+    },
+    "target_weight_kg": {
+      "type": "number"
+    },
+    "target_bf_pct": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "athlete_id",
+    "goal_type"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

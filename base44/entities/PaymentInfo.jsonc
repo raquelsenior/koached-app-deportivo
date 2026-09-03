@@ -1,0 +1,70 @@
+{
+  "name": "PaymentInfo",
+  "type": "object",
+  "properties": {
+    "exchange_rate_usd_ves": {
+      "type": "number"
+    },
+    "exchange_rate_eur_usd": {
+      "type": "number"
+    },
+    "accepted_methods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "daily_card_pin": {
+      "type": "string"
+    },
+    "card_last4": {
+      "type": "string"
+    },
+    "zelle_email": {
+      "type": "string"
+    },
+    "binance_id": {
+      "type": "string"
+    },
+    "pago_movil_bank": {
+      "type": "string"
+    },
+    "pago_movil_cedula": {
+      "type": "string"
+    },
+    "pago_movil_phone": {
+      "type": "string"
+    },
+    "zinli_email": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "valid_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "valid_date"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

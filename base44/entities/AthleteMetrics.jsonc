@@ -1,0 +1,211 @@
+{
+  "name": "AthleteMetrics",
+  "type": "object",
+  "properties": {
+    "athlete_id": {
+      "type": "string"
+    },
+    "athlete_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "weight_kg": {
+      "type": "number"
+    },
+    "waist_cm": {
+      "type": "number"
+    },
+    "arm_cm": {
+      "type": "number"
+    },
+    "thigh_cm": {
+      "type": "number"
+    },
+    "skinfold_sum_mm": {
+      "type": "number"
+    },
+    "session_rpe": {
+      "type": "number"
+    },
+    "session_duration_min": {
+      "type": "number"
+    },
+    "session_load": {
+      "type": "number"
+    },
+    "weekly_load": {
+      "type": "number"
+    },
+    "chronic_load_4w": {
+      "type": "number"
+    },
+    "acwr": {
+      "type": "number"
+    },
+    "hrv_ms": {
+      "type": "number"
+    },
+    "hrv_change_pct": {
+      "type": "number"
+    },
+    "resting_hr": {
+      "type": "number"
+    },
+    "hrr_60s": {
+      "type": "number"
+    },
+    "sleep_hours": {
+      "type": "number"
+    },
+    "sleep_quality": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "sleep_efficiency_pct": {
+      "type": "number",
+      "description": "% tiempo dormido / tiempo en cama. Objetivo >85%"
+    },
+    "sleep_latency_min": {
+      "type": "number",
+      "description": "Minutos hasta quedarse dormido. Objetivo 10-20 min"
+    },
+    "waso_min": {
+      "type": "number",
+      "description": "Wake After Sleep Onset en minutos. Objetivo <30 min"
+    },
+    "sleep_deep_pct": {
+      "type": "number",
+      "description": "% sue\u00f1o profundo NREM N3. Objetivo 15-25%"
+    },
+    "sleep_rem_pct": {
+      "type": "number",
+      "description": "% sue\u00f1o REM. Objetivo 20-25%"
+    },
+    "sleep_light_pct": {
+      "type": "number",
+      "description": "% sue\u00f1o ligero NREM N1/N2. Objetivo 50-60%"
+    },
+    "nocturnal_hrv_ms": {
+      "type": "number",
+      "description": "HRV promedio nocturna en ms"
+    },
+    "sleep_inertia_min": {
+      "type": "number",
+      "description": "Duraci\u00f3n de la inercia/niebla al despertar en minutos"
+    },
+    "daytime_alertness": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Nivel de energ\u00eda/alerta diurna. 1=muy bajo, 5=\u00f3ptimo"
+    },
+    "sleep_continuity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Percepci\u00f3n de continuidad del descanso. 1=muy fragmentado, 5=continuo"
+    },
+    "muscle_soreness": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "stress_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "fatigue_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "urine_color": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "protein_g_kg": {
+      "type": "number"
+    },
+    "carbs_g_kg": {
+      "type": "number"
+    },
+    "energy_availability_kcal": {
+      "type": "number"
+    },
+    "sweat_rate_l_h": {
+      "type": "number"
+    },
+    "weight_loss_pct": {
+      "type": "number"
+    },
+    "cmj_cm": {
+      "type": "number"
+    },
+    "cmj_change_pct": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "athlete_id",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

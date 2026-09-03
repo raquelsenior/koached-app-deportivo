@@ -1,0 +1,142 @@
+{
+  "name": "StoreProduct",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "uniform",
+        "clothing",
+        "footwear",
+        "accessories",
+        "nutrition_guide",
+        "training_guide"
+      ],
+      "default": "clothing"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "official",
+        "marketplace_new",
+        "marketplace_used"
+      ],
+      "default": "official"
+    },
+    "price_usd": {
+      "type": "number"
+    },
+    "size": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "new",
+        "like_new",
+        "good",
+        "fair"
+      ],
+      "default": "new"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "stock": {
+      "type": "integer",
+      "default": 1
+    },
+    "seller_athlete_id": {
+      "type": "string"
+    },
+    "seller_name": {
+      "type": "string"
+    },
+    "seller_phone": {
+      "type": "string"
+    },
+    "listing_fee_paid": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "sold",
+        "pending_review",
+        "inactive"
+      ],
+      "default": "pending_review"
+    },
+    "is_digital": {
+      "type": "boolean",
+      "default": false
+    },
+    "digital_content_url": {
+      "type": "string"
+    },
+    "affiliate_enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "affiliate_commission_pct": {
+      "type": "number",
+      "default": 5
+    }
+  },
+  "required": [
+    "title",
+    "price_usd",
+    "category",
+    "product_type"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
